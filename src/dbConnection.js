@@ -12,6 +12,8 @@ const mongoose = require("mongoose")
 
 const dbConnection = async () => {
 
+    // mongoose.connect('mongodb://localhost:27017/blogAPI')
+    // mongoose.connect(process.env?.MONGO_URI)
     mongoose.connect(process.env?.MONGO_URI || 'mongodb://localhost:27017/blogAPI')
         .then(() => console.log('* DB Connected.'))
         .catch(() => console.log('* DB Not Connected.'))
