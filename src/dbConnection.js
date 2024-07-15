@@ -6,7 +6,7 @@
 // Mongoose
 // $ npm i mongoose
 
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 // Connect to MongoDB
 
@@ -16,3 +16,5 @@ const dbConnection = async () => {
         .then(() => console.log('* DB Connected.'))
         .catch(() => console.log('* DB Not Connected.'))
 }
+
+module.exports = dbConnection

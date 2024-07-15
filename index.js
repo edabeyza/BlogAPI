@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json())
 
+// DB Connection
+const dbConnection = require('./src/dbConnection')
+dbConnection()
+
 app.all('/', (req, res) => {
     res.send('WELCOME TO BLOG API')
 })
@@ -21,6 +25,7 @@ app.all('/', (req, res) => {
 
 // Catch Errors:
 app.use(require('./src/errorHandler'))
+
 
 /* ------------------------------------------------------- */
 
