@@ -63,6 +63,8 @@ const BlogCategorySchema = new mongoose.Schema({
     collection: 'blogCategories',
     timestamps: true })
 
+// Set Model
+// const BlogCategory = mongoose.model('BlogCategory', BlogCategorySchema)
 
 /* ------------------------------------------------------- */
 
@@ -73,11 +75,12 @@ const BlogPostSchema = new mongoose.Schema({
     // _id
 
     categoryId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'blogCategories',
+        type: mongoose.Schema.Types.ObjectId,  // BlogCategory tablosundan bir id gelecek. ObjectId Javascript'te olmayan bir veri tipi olduğu için mongoose'un Schema kütüphanesinden alınır. // Hexadecimal Format: 5f4e7b3e3e6e4d2e3e6e4d2e
+        ref: 'BlogCategory', // BlogCategory tablosuna referans verir.
         required: [true, 'Blog Category is required'],
+        // unique: true // One to one ilişki yapmak için.
     },
-    
+
     title: {
         type: String,
         required: [true, 'Blog Title is required'],
@@ -94,3 +97,18 @@ const BlogPostSchema = new mongoose.Schema({
 }, { collection: 'blogPosts', 
     timestamps: true 
 })
+
+// Set Model
+// const BlogPost = mongoose.model('BlogPost', BlogPostSchema)
+
+/* ------------------------------------------------------- */
+
+// Export Models
+// module.exports = { BlogCategory, BlogPost }
+module.exports = { 
+    BlogCategory: mongoose.model('BlogCategory', BlogCategorySchema), 
+    BlogPost: mongoose.model('BlogPost', BlogPostSchema)
+
+ }
+
+ // Many to One ilişkiyi One to One ilişkiye çevirmek için many olan tarafı yani foreing key'i unique yapmak gerekmektedir.
