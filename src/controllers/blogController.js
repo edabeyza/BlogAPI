@@ -14,7 +14,15 @@ module.exports.blogCategory = {
 
     create: async (req, res) => {
 
-        res.send('create method')
+        // res.send('create method')
+
+        const data = await BlogCategory.create(req.body)
+        console.log(data)
+
+        res.status(201).send({
+            error:false,
+            result: data
+        })
         
     }
 }
