@@ -27,6 +27,8 @@ app.all('/', (req, res) => {
     res.send('WELCOME TO BLOG API')
 })
 
+app.use('/blog', require('./src/routes/blogRouter'))
+
 // continue from here...
 
 // Catch Errors:
