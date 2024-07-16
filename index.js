@@ -19,6 +19,9 @@ app.use(express.json())
 // dbConnection()
 require('./src/dbConnection')()
 
+// Catch errors from async functions:
+require('express-async-errors')
+
 // Routes
 app.all('/', (req, res) => {
     res.send('WELCOME TO BLOG API')
