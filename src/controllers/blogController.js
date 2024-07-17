@@ -119,7 +119,7 @@ module.exports.blogPost = {
 
     read: async (req, res) => {
 
-        const data = await BlogPost.findOne({_id:req.params.categoryId})
+        const data = await BlogPost.findOne({_id:req.params.postId})
 
         res.status(200).send({
             error: false,
@@ -129,19 +129,19 @@ module.exports.blogPost = {
 
     update: async (req, res) => {
 
-        const data = await BlogPost.updateOne({_id: req.params.categoryId}, req.body)
+        const data = await BlogPost.updateOne({_id: req.params.postId}, req.body)
         
         res.status(202).send({
             error: false,
             result: data, // Güncelleme işleminin sayısal değerini döndürür.
-            new: await BlogPost.findOne({_id:req.params.categoryId}) // Güncellenmiş halini döndürür.
+            new: await BlogPost.findOne({_id:req.params.postId}) // Güncellenmiş halini döndürür.
         })  
 
     },
 
     delete: async (req, res) => {
 
-        const data = await BlogPost.deleteOne({_id:req.params.categoryId})
+        const data = await BlogPost.deleteOne({_id:req.params.postId})
         console.log(data)
 
         // res.status(204).send({
