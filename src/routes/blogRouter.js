@@ -14,6 +14,7 @@ const {blogCategory, blogPost} = require('../controllers/blogController')
 
 // BlogCategory
 router.route('/category')
+    .get(blogCategory.list)
     .post(blogCategory.create)
 /* ------------------------------------------------------- */
 
