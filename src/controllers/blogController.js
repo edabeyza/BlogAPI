@@ -119,7 +119,7 @@ module.exports.blogPost = {
 
     read: async (req, res) => {
 
-        const data = await BlogPost.findOne({_id:req.params.postId})
+        const data = await BlogPost.findOne({_id:req.params.postId}, {title:1, categoryId:1, content:1}).populate('categoryId')
 
         res.status(200).send({
             error: false,

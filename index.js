@@ -27,7 +27,8 @@ app.all('/', (req, res) => {
     res.send('WELCOME TO BLOG API')
 })
 
-app.use('/blog', require('./src/routes/blogRouter'))
+app.use('/blog', require('./src/routes/blogRouter')) // BlogCategory, BlogPost
+app.use('/user', require('./src/routes/userRouter')) // User
 
 // continue from here...
 
