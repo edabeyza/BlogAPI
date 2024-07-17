@@ -3,14 +3,15 @@
     EXPRESSJS - BLOG Project with Mongoose
 ------------------------------------------------------- */
 
-const router = require("express").Router();
+const router = require('express').Router()
 
 // Call Controllers:
-const {blogCategory, blogPost} = require('../controllers/blogController')
+const { blogCategory, blogPost } = require('../controllers/blogController')
+
 
 /* ------------------------------------------------------- */
 
-// URL: /blog
+// URL: /blog ->
 
 // BlogCategory
 router.route('/category')
@@ -35,5 +36,4 @@ router.route('/post/:postId')
     .delete(blogPost.delete)
 
 /* ------------------------------------------------------- */
-
-module.exports = router;
+module.exports = router

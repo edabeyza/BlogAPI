@@ -4,11 +4,10 @@
 ------------------------------------------------------- */
 
 // Call Models:
-const {BlogCategory, BlogPost} = require('../models/blogModel')
+const { BlogCategory, BlogPost } = require('../models/blogModel')
 
 /* ------------------------------------------------------- */
-
-// BlogCategory Controller
+// BlogCategory Controller:
 
 module.exports.blogCategory = {
 
@@ -20,30 +19,31 @@ module.exports.blogCategory = {
             error: false,
             result: data
         })
+
     },
 
-    // CRUD Methods
+    // CRUD ->
 
     create: async (req, res) => {
 
-        // res.send('create method')
-
         const data = await BlogCategory.create(req.body)
-        console.log(data)
+        // console.log(data)
 
         res.status(201).send({
-            error:false,
+            error: false,
             result: data
         })
-        
+
     },
 
     read: async (req, res) => {
 
         // const categoryId = req.params.categoryId
-        // const data = await BlogCategory.findOne({_id:categoryId})
+        // const data = await BlogCategory.findOne({ _id: categoryId })
 
-        const data = await BlogCategory.findOne({_id:req.params.categoryId})
+        // const data = await BlogCategory.findOne({ ...filter })
+        const data = await BlogCategory.findOne({ _id: req.params.categoryId })
+        // const data = await BlogCategory.findById( req.params.categoryId )
 
         res.status(200).send({
             error: false,
@@ -53,73 +53,79 @@ module.exports.blogCategory = {
 
     update: async (req, res) => {
 
-        // const data = await BlogCategory.updateOne({ ...filter}, { ...data })
-        const data = await BlogCategory.updateOne({_id: req.params.categoryId}, req.body)
-        
+        // const data = await BlogCategory.updateOne({ ...filter }, { ...data })
+        const data = await BlogCategory.updateOne({ _id: req.params.categoryId }, req.body)
+        // const data = await BlogCategory.findByIdAndUpdate(req.params.categoryId, req.body)
+
         res.status(202).send({
             error: false,
-            result: data, // Güncelleme işleminin sayısal değerini döndürür.
-            new: await BlogCategory.findOne({_id:req.params.categoryId}) // Güncellenmiş halini döndürür.
-        })  
+            result: data, // Güncelleme işleminin sayısal değerleri.
+            new: await BlogCategory.findOne({ _id: req.params.categoryId }) // Güncellenmiş datayı göster.
+        })
 
     },
 
     delete: async (req, res) => {
 
-        const data = await BlogCategory.deleteOne({_id:req.params.categoryId})
-        console.log(data)
+        // const data = await BlogCategory.deleteOne({ ...filter })
+        const data = await BlogCategory.deleteOne({ _id: req.params.categoryId })
+        // console.log(data)
 
         // res.status(204).send({
         //     error: false,
         //     result: data
         // })
 
-        if(data.deletedCount > 0){
+        if (data.deletedCount >= 1) {
+
             res.sendStatus(204)
-            // error: false,
+            // error: false
 
         } else {
 
             res.errorStatusCode = 404
-            throw new Error('Data not found')
+            throw new Error('Not Found.')
+            // error: true
 
-            // error: true,
         }
     }
-    
 }
 
+/* ------------------------------------------------------- */
+// BlogPost Controller:
+
 module.exports.blogPost = {
-    
+
     list: async (req, res) => {
 
-        const data = await BlogPost.find({}, {title:1, categoryId:1, content:1}).populate('categoryId')
+        // const data = await BlogPost.find({ ...filter }, { ...select })
+        // const data = await BlogPost.find({}, { _id: 0, categoryId: 1, title: 1, content: 1 })
+        const data = await BlogPost.find({}, { categoryId: true, title: true, content: true }).populate('categoryId')
 
         res.status(200).send({
             error: false,
             result: data
         })
+
     },
 
-    // CRUD Methods
+    // CRUD ->
 
     create: async (req, res) => {
 
-        // res.send('create method')
-
         const data = await BlogPost.create(req.body)
-        console.log(data)
 
         res.status(201).send({
-            error:false,
+            error: false,
             result: data
         })
-        
+
     },
 
     read: async (req, res) => {
 
-        const data = await BlogPost.findOne({_id:req.params.postId}, {title:1, categoryId:1, content:1}).populate('categoryId')
+        const data = await BlogPost.findOne({ _id: req.params.postId }).populate('categoryId')
+        // const data = await BlogPost.findOne({ _id: req.params.postId }, { categoryId: true, title: true, content: true })
 
         res.status(200).send({
             error: false,
@@ -129,37 +135,31 @@ module.exports.blogPost = {
 
     update: async (req, res) => {
 
-        const data = await BlogPost.updateOne({_id: req.params.postId}, req.body)
-        
+        const data = await BlogPost.updateOne({ _id: req.params.postId }, req.body)
+
         res.status(202).send({
             error: false,
-            result: data, // Güncelleme işleminin sayısal değerini döndürür.
-            new: await BlogPost.findOne({_id:req.params.postId}) // Güncellenmiş halini döndürür.
-        })  
+            result: data, // Güncelleme işleminin sayısal değerleri.
+            new: await BlogPost.findOne({ _id: req.params.postId }) // Güncellenmiş datayı göster.
+        })
 
     },
 
     delete: async (req, res) => {
 
-        const data = await BlogPost.deleteOne({_id:req.params.postId})
-        console.log(data)
+        const data = await BlogPost.deleteOne({ _id: req.params.postId })
 
-        // res.status(204).send({
-        //     error: false,
-        //     result: data
-        // })
+        if (data.deletedCount >= 1) {
 
-        if(data.deletedCount > 0){
             res.sendStatus(204)
-            // error: false,
 
         } else {
 
             res.errorStatusCode = 404
-            throw new Error('Data not found')
+            throw new Error('Not Found.')
 
-            // error: true,
         }
     }
-    
 }
+
+/* ------------------------------------------------------- */
