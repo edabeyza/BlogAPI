@@ -23,7 +23,8 @@ require('express-async-errors')
 /* ------------------------------------------------------- */
 // Session & Cookie:
 //* $ npm install cookie-session
-const session = require('cookie-session')
+const session = require('cookie-session');
+const { user } = require("./src/controllers/userController");
 // Session lar ömür verilmemiş Cookie lerdir.
 // Bu bir middlewaredir. O yüzden app.use() ile kullanılır.
 app.use(session( // Session için gerekli genel ayarlar
@@ -41,8 +42,11 @@ app.use(require('./src/middlewares/userControl'))
 
 app.all('/', (req, res) => {
     res.send({
+        
+        message: 'Welcome to Blog Project',
         session: req.session, // Session ile ilgili data işlemlerini yapabiliriz.
-        message: 'Welcome to Blog Project'
+        user: req.user, // User ile ilgili data işlemlerini yapabiliriz.
+        isLogin: (req.user ? true : false)  // Login olup olmadığını kontrol edebiliriz.
     })
 })
 

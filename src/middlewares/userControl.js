@@ -7,8 +7,22 @@
 
 const { User } = require('../models/userModel')
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     
-    console.log(req.session)
+    req.user = null
+    // console.log(req.session)
+    if (req?.session?._id) {
+        // Session: OK
+        const user = await User.findOne({ _id: req.session._id})
+
+        if (user && user.password == req.session.password) {
+
+            req.user = user
+
+        } else {
+
+            req.session = null
+        }
+    }
     next()
 }
