@@ -20,6 +20,18 @@ require('./src/dbConnection')()
 
 // Catch error from async:
 require('express-async-errors')
+/* ------------------------------------------------------- */
+// Session & Cookie:
+//* $ npm install cookie-session
+const session = require('cookie-session')
+// Session lar ömür verilmemiş Cookie lerdir.
+// Bu bir middlewaredir. O yüzden app.use() ile kullanılır.
+app.use(session( // Session için gerekli genel ayarlar
+    {
+        secret: process.env.SECRET_KEY,
+        // maxAge: 1000 * 60 * 60 * 24 * 3, // Milisecond cinsinden. 1000 ms = 1 s
+    }
+))
 
 /* ------------------------------------------------------- */
 
