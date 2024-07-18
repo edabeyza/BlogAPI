@@ -5,27 +5,30 @@
 
 const mongoose = require('mongoose')
 
-/* ------------------------------------------------------- */
+// /* ------------------------------------------------------- */
 
-// Password Encrypt (PBKDF2 Method):
-// https://nodejs.org/api/crypto.html#cryptopbkdf2syncpassword-salt-iterations-keylen-digest
+// // Password Encrypt (PBKDF2 Method):
+// // https://nodejs.org/api/crypto.html#cryptopbkdf2syncpassword-salt-iterations-keylen-digest
 
-const crypto = require('crypto')
+// const crypto = require('crypto')
 
-// Parameters:
-const keyCode = process.env.SECRET_KEY // Şifreleme anahtarı.
-const loopCount = 10_000 // Döngü sayısı
-const charCount = 32 // write 32 for 64
-const encType = 'sha512' // Şifreleme algoritması.
+// // Parameters:
+// const keyCode = process.env.SECRET_KEY // Şifreleme anahtarı.
+// const loopCount = 10_000 // Döngü sayısı
+// const charCount = 32 // write 32 for 64
+// const encType = 'sha512' // Şifreleme algoritması.
 
-// Return encrypted password:
-const passwordEncrypt = function (password) {
+// // Return encrypted password:
+// const passwordEncrypt = function (password) {
 
-    return crypto.pbkdf2Sync(password, keyCode, loopCount, charCount, encType).toString('hex')
+//     return crypto.pbkdf2Sync(password, keyCode, loopCount, charCount, encType).toString('hex')
 
-}
+// }
 
-/* ------------------------------------------------------- */
+// /* ------------------------------------------------------- */
+
+// Call passwordEncrypt function:
+const passwordEncrypt = require('../helpers/passwordEncrypt')  
 
 const UserSchema = new mongoose.Schema({
 
