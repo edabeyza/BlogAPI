@@ -32,6 +32,10 @@ app.use(session( // Session için gerekli genel ayarlar
         // maxAge: 1000 * 60 * 60 * 24 * 3, // Milisecond cinsinden. 1000 ms = 1 s
     }
 ))
+/* ------------------------------------------------------- */
+
+app.use(require('./src/middlewares/userControl'))
+// Genel bir middleware olduğu için tüm route ları kapsar ve üstte olmalıdır.
 
 /* ------------------------------------------------------- */
 
