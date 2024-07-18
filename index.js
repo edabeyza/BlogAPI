@@ -36,7 +36,10 @@ app.use(session( // Session için gerekli genel ayarlar
 /* ------------------------------------------------------- */
 
 app.all('/', (req, res) => {
-    res.send('WELCOME TO BLOG API')
+    res.send({
+        session: req.session, // Session ile ilgili data işlemlerini yapabiliriz.
+        message: 'Welcome to Blog Project'
+    })
 })
 
 /* ------------------------------------------------------- */
@@ -48,7 +51,7 @@ app.use('/blog', require('./src/routes/blogRouter')) // BlogCategory & BlogPost
 
 /* ------------------------------------------------------- */
 // Catch Errors:
-app.use(require('./src/errorHandler'))
+app.use(require('./src/middlewares/errorHandler'))
 
 /* ------------------------------------------------------- */
 
