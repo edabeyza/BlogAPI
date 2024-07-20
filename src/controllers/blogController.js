@@ -152,16 +152,19 @@ module.exports.blogPost = {
 
         const data = await BlogPost.deleteOne({ _id: req.params.postId })
 
-        if (data.deletedCount >= 1) {
+        // if (data.deletedCount >= 1) {
 
-            res.sendStatus(204)
+        //     res.sendStatus(204)
 
-        } else {
+        // } else {
 
-            res.errorStatusCode = 404
-            throw new Error('Not Found.')
+        //     res.errorStatusCode = 404
+        //     throw new Error('Not Found.')
 
-        }
+        // }
+        res.send(data)
+        console.log(data)
+
     }
 }
 
