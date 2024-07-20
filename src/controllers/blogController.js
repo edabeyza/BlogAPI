@@ -100,7 +100,8 @@ module.exports.blogPost = {
 
         // const data = await BlogPost.find({ ...filter }, { ...select })
         // const data = await BlogPost.find({}, { _id: 0, categoryId: 1, title: 1, content: 1 })
-        const data = await BlogPost.find({}, { categoryId: true, title: true, content: true }).populate('categoryId')
+        // const data = await BlogPost.find({}, { categoryId: true, title: true, content: true }).populate('categoryId')
+        const data = await BlogPost.find().populate('categoryId')
 
         res.status(200).send({
             error: false,

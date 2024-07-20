@@ -38,5 +38,8 @@ module.exports = async() => {
             published: Boolean(key%2) // 0 ve 1 değerlerini alacak
         })
     }
+    
+    // finish
+    console.log('Sync Data Created')
 }
 /* ------------------------------------------------------- */
