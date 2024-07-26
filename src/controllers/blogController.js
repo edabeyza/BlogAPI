@@ -1,6 +1,6 @@
 "use strict";
 /* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
+        EXPRESSJS - BLOG Project with Mongoose
 ------------------------------------------------------- */
 
 // Call Models:
@@ -98,6 +98,22 @@ module.exports.blogPost = {
 
     list: async (req, res) => {
 
+        console.log(req.query)
+
+        // SEARCHING & SORTING & PAGINATION
+
+        // FILTERING:
+        // URL?filter[fieldName1]=value1&filter[fieldName2]=value2
+        
+
+        // SEARCHING:
+        // URL?search[fieldName1]=value1&search[fieldName2]=value2
+
+
+        // SORTING:
+        // URL?sort[fieldName1]=value1&sort[fieldName2]=value2
+
+
         // const data = await BlogPost.find({ ...filter }, { ...select })
         // const data = await BlogPost.find({}, { _id: 0, categoryId: 1, title: 1, content: 1 })
         // const data = await BlogPost.find({}, { categoryId: true, title: true, content: true }).populate('categoryId')
@@ -153,19 +169,16 @@ module.exports.blogPost = {
 
         const data = await BlogPost.deleteOne({ _id: req.params.postId })
 
-        // if (data.deletedCount >= 1) {
+        if (data.deletedCount >= 1) {
 
-        //     res.sendStatus(204)
+            res.sendStatus(204)
 
-        // } else {
+        } else {
 
-        //     res.errorStatusCode = 404
-        //     throw new Error('Not Found.')
+            res.errorStatusCode = 404
+            throw new Error('Not Found.')
 
-        // }
-        res.send(data)
-        console.log(data)
-
+        }
     }
 }
 
