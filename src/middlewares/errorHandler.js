@@ -1,6 +1,6 @@
 "use strict";
 /* -------------------------------------------------------
-    EXPRESSJS - Error Handler 
+            EXPRESSJS - Error Handler 
 ------------------------------------------------------- */
 
 module.exports = (err, req, res, next) => {

@@ -1,6 +1,6 @@
 "use strict";
 /* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
+            EXPRESSJS - BLOG Project with Mongoose
 ------------------------------------------------------- */
 // Authentication Middleware:
 // Session içindeki user id ve password u kontrol eden middleware
