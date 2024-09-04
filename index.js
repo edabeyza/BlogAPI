@@ -16,7 +16,7 @@ app.use(express.json())
 // DB CONNECTION:
 // const dbConnection = require('./src/dbConnection')
 // dbConnection()
-require('./src/dbConnection')()
+require('./src/configs/dbConnection')()
 
 // Catch error from async:
 require('express-async-errors')
